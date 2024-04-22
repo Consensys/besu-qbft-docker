@@ -1,0 +1,7 @@
+genesis-file="/opt/besu/genesis.json"
+data-path="/opt/besu/data"
+node-private-key-file="/opt/besu/key"
+rpc-http-enabled=true
+rpc-http-api=["ETH","QBFT","WEB3", "DEBUG"]
+host-allowlist=["*"]
+rpc-http-cors-origins=["all"]
