@@ -5,18 +5,11 @@ services:
               "--identity=validator1",
               "--p2p-host=10.42.0.2",
               "--p2p-port=30303"]
-    user: "1000:1000"
     volumes:
-      - ./common-config.toml:/opt/besu/common-config.toml
-      - ./genesis.json:/opt/besu/genesis.json
-      - ./keys/validator1/key:/opt/besu/key
-      - type: volume
-        source: validator1-data
-        target: /opt/besu/data
-#    blkio_config:
-#      device_read_bps:
-#        - path: /opt/besu/data
-#          rate: "1024k"
+      - ./common-config.toml:/opt/besu/common-config.toml:ro
+      - ./genesis.json:/opt/besu/genesis.json:ro
+      - ./keys/validator1/key:/opt/besu/key:ro
+      - validator1-data:/opt/besu/data
     ports:
       - "8545:8545"
       - "30303:30303/tcp"
@@ -33,11 +26,17 @@ services:
               "--p2p-host=10.42.0.3",
               "--p2p-port=30304"]
     volumes:
-      - ./common-config.toml:/opt/besu/common-config.toml
-      - ./genesis.json:/opt/besu/genesis.json
-      - ./data/validator2:/opt/besu/data
-      - ./keys/validator2/key:/opt/besu/key
-
+      - ./common-config.toml:/opt/besu/common-config.toml:ro
+      - ./genesis.json:/opt/besu/genesis.json:ro
+      - ./keys/validator2/key:/opt/besu/key:ro
+      - validator2-data:/opt/besu/data
+#    blkio_config:
+#      device_read_bps:
+#        - path: /dev/vda
+#          rate: '1mb'
+#      device_write_bps:
+#        - path: /dev/vda
+#          rate: '1mb'
     ports:
       - "8546:8545"
       - "30304:30304/tcp"
@@ -54,10 +53,10 @@ services:
               "--p2p-host=10.42.0.4",
               "--p2p-port=30305"]
     volumes:
-      - ./common-config.toml:/opt/besu/common-config.toml
-      - ./genesis.json:/opt/besu/genesis.json
-      - ./data/validator3:/opt/besu/data
-      - ./keys/validator3/key:/opt/besu/key
+      - ./common-config.toml:/opt/besu/common-config.toml:ro
+      - ./genesis.json:/opt/besu/genesis.json:ro
+      - ./keys/validator3/key:/opt/besu/key:ro
+      - validator3-data:/opt/besu/data
     ports:
       - "8547:8545"
       - "30305:30305/tcp"
@@ -74,10 +73,10 @@ services:
               "--p2p-host=10.42.0.5",
               "--p2p-port=30306"]
     volumes:
-      - ./common-config.toml:/opt/besu/common-config.toml
-      - ./genesis.json:/opt/besu/genesis.json
-      - ./data/validator4:/opt/besu/data
-      - ./keys/validator4/key:/opt/besu/key
+      - ./common-config.toml:/opt/besu/common-config.toml:ro
+      - ./genesis.json:/opt/besu/genesis.json:ro
+      - ./keys/validator4/key:/opt/besu/key:ro
+      - validator4-data:/opt/besu/data
     ports:
       - "8548:8545"
       - "30306:30306/tcp"
@@ -104,5 +103,17 @@ volumes:
       o: "bind,nolock,soft,rw,uid=1000,gid=1000"
       device: $PWD/${VALIDATOR1_DATA_PATH}
   validator2-data:
+    driver_opts:
+      type: "local"
+      o: "bind,nolock,soft,rw,uid=1000,gid=1000"
+      device: $PWD/${VALIDATOR2_DATA_PATH}
   validator3-data:
+    driver_opts:
+      type: "local"
+      o: "bind,nolock,soft,rw,uid=1000,gid=1000"
+      device: $PWD/${VALIDATOR3_DATA_PATH}
   validator4-data:
+    driver_opts:
+      type: "local"
+      o: "bind,nolock,soft,rw,uid=1000,gid=1000"
+      device: $PWD/${VALIDATOR4_DATA_PATH}
