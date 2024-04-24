@@ -9,6 +9,15 @@ To start the network, run:
 ```bash
 docker-compose up
 ```
+## Data persistence
+
+The data for each node is stored in the `data` directory. This directory is mounted as a volume in the docker-compose file. This means that the data will persist between restarts.
+
+In order to reset the data and start the network from genesis again delete the respective folders:
+
+```bash
+rm -rf ./data/validator{1,2,3,4}/*
+```
 
 ## Stress Testing
 

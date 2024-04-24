@@ -1,10 +1,10 @@
 services:
   validator1:
     image: hyperledger/besu:latest
-    command: ["--config-file=/opt/besu/common-config.toml",
-              "--identity=validator1",
-              "--p2p-host=10.42.0.2",
-              "--p2p-port=30303"]
+    command: [ "--config-file=/opt/besu/common-config.toml",
+               "--identity=validator1",
+               "--p2p-host=10.42.0.2",
+               "--p2p-port=30303" ]
     volumes:
       - ./common-config.toml:/opt/besu/common-config.toml:ro
       - ./genesis.json:/opt/besu/genesis.json:ro
@@ -20,11 +20,11 @@ services:
 
   validator2:
     image: hyperledger/besu:latest
-    command: ["--config-file=/opt/besu/common-config.toml",
-              "--identity=validator2",
-              "--bootnodes=enode://ad83ac93fcc30a30f3e1bb6467623e45719167be50d13dccd8361cbca478cb540069869d1bae16de0f8b17a28f26f1c6c4dc12e71f240b366c6ff6f02f3fb93e@10.42.0.2:30303",
-              "--p2p-host=10.42.0.3",
-              "--p2p-port=30304"]
+    command: [ "--config-file=/opt/besu/common-config.toml",
+               "--identity=validator2",
+               "--bootnodes=enode://ad83ac93fcc30a30f3e1bb6467623e45719167be50d13dccd8361cbca478cb540069869d1bae16de0f8b17a28f26f1c6c4dc12e71f240b366c6ff6f02f3fb93e@10.42.0.2:30303",
+               "--p2p-host=10.42.0.3",
+               "--p2p-port=30304" ]
     volumes:
       - ./common-config.toml:/opt/besu/common-config.toml:ro
       - ./genesis.json:/opt/besu/genesis.json:ro
@@ -33,10 +33,11 @@ services:
 #    blkio_config:
 #      device_read_bps:
 #        - path: /dev/vda
-#          rate: '1mb'
-#      device_write_bps:
-#        - path: /dev/vda
-#          rate: '1mb'
+#          rate: '128kb'
+#        - path: /dev/vdb
+#          rate: '128kb'
+#        - path: /dev/vdc
+#          rate: '128kb'
     ports:
       - "8546:8545"
       - "30304:30304/tcp"
@@ -47,11 +48,11 @@ services:
 
   validator3:
     image: hyperledger/besu:latest
-    command: ["--config-file=/opt/besu/common-config.toml",
-              "--identity=validator3",
-              "--bootnodes=enode://ad83ac93fcc30a30f3e1bb6467623e45719167be50d13dccd8361cbca478cb540069869d1bae16de0f8b17a28f26f1c6c4dc12e71f240b366c6ff6f02f3fb93e@10.42.0.2:30303",
-              "--p2p-host=10.42.0.4",
-              "--p2p-port=30305"]
+    command: [ "--config-file=/opt/besu/common-config.toml",
+               "--identity=validator3",
+               "--bootnodes=enode://ad83ac93fcc30a30f3e1bb6467623e45719167be50d13dccd8361cbca478cb540069869d1bae16de0f8b17a28f26f1c6c4dc12e71f240b366c6ff6f02f3fb93e@10.42.0.2:30303",
+               "--p2p-host=10.42.0.4",
+               "--p2p-port=30305" ]
     volumes:
       - ./common-config.toml:/opt/besu/common-config.toml:ro
       - ./genesis.json:/opt/besu/genesis.json:ro
@@ -67,11 +68,11 @@ services:
 
   validator4:
     image: hyperledger/besu:latest
-    command: ["--config-file=/opt/besu/common-config.toml",
-              "--identity=validator4",
-              "--bootnodes=enode://ad83ac93fcc30a30f3e1bb6467623e45719167be50d13dccd8361cbca478cb540069869d1bae16de0f8b17a28f26f1c6c4dc12e71f240b366c6ff6f02f3fb93e@10.42.0.2:30303",
-              "--p2p-host=10.42.0.5",
-              "--p2p-port=30306"]
+    command: [ "--config-file=/opt/besu/common-config.toml",
+               "--identity=validator4",
+               "--bootnodes=enode://ad83ac93fcc30a30f3e1bb6467623e45719167be50d13dccd8361cbca478cb540069869d1bae16de0f8b17a28f26f1c6c4dc12e71f240b366c6ff6f02f3fb93e@10.42.0.2:30303",
+               "--p2p-host=10.42.0.5",
+               "--p2p-port=30306" ]
     volumes:
       - ./common-config.toml:/opt/besu/common-config.toml:ro
       - ./genesis.json:/opt/besu/genesis.json:ro
